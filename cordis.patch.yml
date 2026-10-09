@@ -1,0 +1,10 @@
+# Bundle patch for dsh-boot-video.
+#
+# 这个文件让包成为 profile 的一层（而不是一个闲置依赖）：下面的 insert 把插件挂进
+# 运行时，包自己的 `dsh.client` 块（package.json）负责把浏览器半边喂给 Web 载体。
+#
+# 只声明 `dsh.client` 的包是不可安装的——插件市场的提交闸门会以
+# "declares only dsh.client — that alone is not installable" 拒绝。两个块都必须有。
+- insert:
+    - id: boot-video
+      name: dsh-boot-video

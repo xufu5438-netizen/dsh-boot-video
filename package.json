@@ -1,0 +1,84 @@
+{
+  "name": "dsh-boot-video",
+  "version": "0.9.1",
+  "description": "给 DeepSeek Harness（DSH）加一段视频开机片头：自带一段 mp4，也可以导入自己的视频（浏览器解不了的编码会自动转成 H.264）、起名、随时切换；播完淡出进界面，点击或 Esc 跳过；设置侧边栏「开机动画」一页里全都能改，底部还有上次开机的自检结果。",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "!assets/boot.mp4",
+    "docs",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "xufu5438-netizen",
+    "url": "https://github.com/xufu5438-netizen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xufu5438-netizen/dsh-boot-video.git"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "plugin",
+    "boot-animation",
+    "splash",
+    "startup",
+    "video",
+    "mp4",
+    "web-ui"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "engines": {
+      "dsh": ">=0.2.0-rc.1"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "asset": "node scripts/make-asset.mjs",
+    "ffmpeg": "node scripts/fetch-ffmpeg.mjs",
+    "check": "node --check lib/client.js && node --check lib/index.js",
+    "test": "node --test tests/*.test.mjs",
+    "verify": "npm run check && npm test",
+    "pack:release": "node scripts/pack-release.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0"
+  }
+}

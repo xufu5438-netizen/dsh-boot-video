@@ -1,0 +1,24 @@
+# 依赖与构建产物
+node_modules/
+
+# 打包产物
+*.tgz
+
+# 没授权的那段素材不进仓库（它是从电影里剪的，只有 HDD 那段有授权）
+assets/yuedu.mp4
+assets/boot.mp4
+
+# 用户自己导入的素材也不进仓库（那是各人机器上的东西，跟插件一起分发没意义）
+assets/user/
+
+# 打包脚本临时用的暂存目录
+.pack-staging/
+
+# 本地验证留下的一次性文件
+_verify-*.png
+_frame-*.png
+*.raw
+.fixtures-*/
+
+# 发布用的 GitHub 令牌（绝不进仓库）
+.gh-token
