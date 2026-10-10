@@ -3,6 +3,13 @@
 本项目的版本记录。格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
 版本号遵循 [SemVer](https://semver.org/lang/zh-CN/)。
 
+## [1.0.1] — 2026-10-10
+
+- 📝 文档：**致谢内置素材的作者**——HDD 开机动画《Hollow Deep Dive System》由 B 站 UP 主
+  [@露霁luki_yo](https://space.bilibili.com/3537104783018790) 授权提供，《素材与许可》《致谢》两节都写明来源与链接。
+- 📝 同步更新英文 README（原来还停在 0.2.x 的三档开关描述）。
+- 代码没有任何改动（49 项测试照旧全过）。
+
 ## [1.0.0] — 2026-10-10
 
 首个正式版：功能定型（自带素材 + 导入自己的视频 + 自动转码 + 设置页一页管完），

@@ -191,7 +191,7 @@ node scripts/make-asset.mjs <你的母带.mp4> --crop 2560:1086:0:177 --crf 22
 
 | 素材 | 来源 | 状态 |
 |---|---|---|
-| `assets/hdd.mp4`（HDD 开机动画） | B 站 UP 主的《Hollow Deep Dive System》(HDD) | ✅ **已获授权**，可随包分发 |
+| `assets/hdd.mp4`（HDD 开机动画） | B 站 UP 主 **[@露霁luki_yo](https://space.bilibili.com/3537104783018790)** 的《Hollow Deep Dive System》(HDD) | ✅ **已获作者授权**，可随包分发 |
 | `assets/yuedu.mp4`（欢迎来到月读世界） | 从电影片段剪出的几秒 | ⛔ **未获授权**——只在本机自用，**不进发布包** |
 
 所以对外发布的那份只有 HDD 一段（用 `npm run pack:release` 打，见下）。
@@ -206,7 +206,9 @@ node scripts/make-asset.mjs <你的母带.mp4> --crop 2560:1086:0:177 --crf 22
 
 ## 致谢
 
-首帧抢屏与"盖住开机卡片"的做法，最初由 [dsh-550c-boot](https://github.com/yannicksong0106/dsh-550c-boot)
-（Ziyang Song / Voidpoket）验证并记录；本插件沿用同一套宿主契约。
+- **HDD 开机动画素材由 B 站 UP 主 [@露霁luki_yo](https://space.bilibili.com/3537104783018790) 授权提供**——
+  《Hollow Deep Dive System》(HDD) 是他的作品，插件内置的那段片头就是它（压缩与裁边见 `scripts/make-asset.mjs`）。
+- 首帧抢屏与"盖住开机卡片"的做法，最初由 [dsh-550c-boot](https://github.com/yannicksong0106/dsh-550c-boot)
+  （Ziyang Song / Voidpoket）验证并记录；本插件沿用同一套宿主契约。
 
 [MIT](LICENSE)

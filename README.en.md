@@ -63,11 +63,15 @@ and ≤ 20 s.
 
 ## Licence
 
-MIT for the code. The bundled `assets/hdd.mp4` is distributed with the original author's permission;
-the plugin never ships a clip it has no right to redistribute. Clips you import stay on your machine.
+MIT for the code. The bundled `assets/hdd.mp4` — the *Hollow Deep Dive System* (HDD) boot animation —
+is distributed **with the permission of its author,
+[@露霁luki_yo on Bilibili](https://space.bilibili.com/3537104783018790)**.
+The plugin never ships a clip it has no right to redistribute. Clips you import stay on your machine.
 
 ## Credits
 
-The "first frame wins over the boot card" approach was first proven and documented by
-[dsh-550c-boot](https://github.com/yannicksong0106/dsh-550c-boot) (Ziyang Song / Voidpoket);
-this plugin follows the same host contract.
+- **HDD boot animation clip: provided with permission by
+  [@露霁luki_yo](https://space.bilibili.com/3537104783018790) (Bilibili).**
+- The "first frame wins over the boot card" approach was first proven and documented by
+  [dsh-550c-boot](https://github.com/yannicksong0106/dsh-550c-boot) (Ziyang Song / Voidpoket);
+  this plugin follows the same host contract.
