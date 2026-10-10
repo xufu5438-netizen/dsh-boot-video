@@ -5,6 +5,8 @@
 
 *Full-screen video boot splash for DSH.*
 
+[![npm](https://img.shields.io/npm/v/dsh-boot-video?label=npm)](https://www.npmjs.com/package/dsh-boot-video) [![GitHub](https://img.shields.io/github/stars/xufu5438-netizen/dsh-boot-video?label=GitHub)](https://github.com/xufu5438-netizen/dsh-boot-video)
+
 ![桌面版实机预览：视频铺满窗口，左下角「打开声音」、右下角「点击画面跳过」](docs/preview-desktop.png)
 
 ---
@@ -27,15 +29,15 @@
 ## 安装
 
 ```sh
+# 从 npm 安装（推荐）
+dsh plugin --profile web add dsh-boot-video
+
 # 从 GitHub 安装（仓库带构建产物，没有安装期脚本，不触发构建授权）
 dsh plugin --profile web add github:xufu5438-netizen/dsh-boot-video
 
 # 或从本地目录安装（把路径换成你解压出来的目录）
 dsh plugin --profile web add <本目录绝对路径>
 ```
-
-> npm 上还没发（还没注册、没开 2FA）；等发上去之后 `dsh plugin --profile web add dsh-boot-video`
-> 才有效。
 
 装完**必须重启一次 DSH**（bundle 在启动时装配），然后 **Ctrl+Shift+R** 硬刷新——
 DSH 的客户端 bundle 带 `max-age=31536000, immutable`，普通 F5 会一直用第一次抓到的副本。
