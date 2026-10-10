@@ -25,8 +25,20 @@ const USER_DIR = join(ROOT, 'assets', 'user')
 const USER_ID = /^u-[a-z0-9-]+$/
 /** 自命名表（lib/index.js USER_LABELS_FILE）。 */
 const LABELS_FILE = join(USER_DIR, 'labels.json')
-/** 宿主探编码用的 ffmpeg（lib/index.js FFMPEG）；有它才会校验"能不能播"。 */
-const FFMPEG = join(ROOT, 'node_modules', '@ffmpeg-installer', 'win32-x64', 'ffmpeg.exe')
+/**
+ * 宿主探编码用的 ffmpeg；有它才会校验"能不能播"、才会跑转码。
+ *
+ * 两处都找：①开发时 `npm run ffmpeg` 装到 node_modules 的那份；
+ * ②插件自己从国内镜像下载后放在 `bin/ffmpeg.exe` 的那份（0.9.0 起用户机器上多半是这个）。
+ * 早前只探①，于是"本机能转码"这件事在测试里被误判成"没装 ffmpeg"、白跳两条用例。
+ */
+const FFMPEG_CANDIDATES = [
+  join(ROOT, 'node_modules', '@ffmpeg-installer', 'win32-x64', 'ffmpeg.exe'),
+  join(ROOT, 'bin', 'ffmpeg.exe'),
+  // 本机开发时它装在**工作区根**的 node_modules 里（不是插件目录下）
+  join(ROOT, '..', 'node_modules', '@ffmpeg-installer', 'win32-x64', 'ffmpeg.exe'),
+]
+const FFMPEG = FFMPEG_CANDIDATES.find((candidate) => existsSync(candidate)) ?? FFMPEG_CANDIDATES[0]
 const hasFfmpeg = existsSync(FFMPEG)
 /**
  * 样本目录：**放在工作区里**，不放系统临时目录——本机的沙箱只允许写工作区，

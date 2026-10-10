@@ -20,5 +20,7 @@ _frame-*.png
 *.raw
 .fixtures-*/
 
-# 发布用的 GitHub 令牌（绝不进仓库）
+# 发布用的令牌（GitHub / npm，绝不进仓库）
 .gh-token
+.npm-token
+.npmrc

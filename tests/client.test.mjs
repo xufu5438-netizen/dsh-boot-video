@@ -823,7 +823,10 @@ test('页面不可见时启动：watchdog 不判死，回到前台会重新挂�
 test('视频打不开：给一块说明卡片，但**绝不能把界面锁住**（跳过按钮与自动退场都要真的生效）', async () => {
   // 这条是 2026-10-09 真机事故的回归测试：当时卡片先立了 finished 守卫再画卡片，
   // 而退场走的是 finish()，被守卫挡住 → 按钮和 6 秒计时全是空转，用户连主界面都进不去。
-  const loaded = loadClient()
+  //
+  // 2026-10-10 起多了一层逻辑：素材加载不了、但**还有别的素材可用**时会自动换一段（不弹卡片），
+  // 所以这里把"只有一段、它自己就是坏的"这种情形显式摆出来 —— 这时才该给说明卡片。
+  const loaded = loadClient({ assets: ['hdd'], storage: { 'dsh-boot-video:asset': 'hdd' } })
   const { body } = loaded
   const host = body.find(isHost)
   const video = host.shadowRoot.children.find((child) => child.tagName === 'VIDEO')
@@ -841,6 +844,30 @@ test('视频打不开：给一块说明卡片，但**绝不能把界面锁住**�
   skipButton.dispatch('click')
   await new Promise((resolve) => setTimeout(resolve, FADE_SETTLE_MS))
   assert.equal(body.find(isHost), null, '点了跳过还不消失 = 把用户锁在开机画面上（事故复现）')
+})
+
+test('素材加载不了但还有别的可选：自动换一段，不弹卡片', async () => {
+  // 发布包里只有 HDD、而浏览器记着"月读世界"（或那段被删了）时走的就是这条路。
+  const loaded = loadClient({ storage: { 'dsh-boot-video:asset': 'yuedu' } })
+  const { body } = loaded
+  const first = body.find(isHost)
+  const video = first.shadowRoot.children.find((child) => child.tagName === 'VIDEO')
+  assert.match(video.src, /asset\/yuedu\.mp4$/, '一开始按记忆里的素材挂')
+
+  video.error = { code: 4 }
+  video.dispatch('error')
+  await new Promise((resolve) => setTimeout(resolve, 60))
+
+  const after = body.find(isHost)
+  assert.ok(after !== null, '换完还要继续播，不能直接撤掉')
+  const next = after.shadowRoot.children.find((child) => child.tagName === 'VIDEO')
+  assert.match(next.src, /asset\/hdd\.mp4$/, '要换到还能用的那段（HDD）')
+  assert.equal(
+    after.shadowRoot.children.some((child) => child.className === 'dshbv-break'),
+    false,
+    '这种能给用户自动解决的情况不该弹"打不开"的卡片',
+  )
+  await retire(after)
 })
 
 test('视频打不开：没人点按钮时也要自己退场', async () => {
