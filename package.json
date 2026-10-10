@@ -1,6 +1,6 @@
 {
   "name": "dsh-boot-video",
-  "version": "0.9.2",
+  "version": "1.0.0",
   "description": "给 DeepSeek Harness（DSH）加一段视频开机片头：自带一段 mp4，也可以导入自己的视频（浏览器解不了的编码会自动转成 H.264）、起名、随时切换；播完淡出进界面，点击或 Esc 跳过；设置侧边栏「开机动画」一页里全都能改，底部还有上次开机的自检结果。",
   "type": "module",
   "main": "./lib/index.js",

@@ -20,6 +20,9 @@ _frame-*.png
 *.raw
 .fixtures-*/
 
+# 本地开发用的二进制（ffmpeg 等，是下载物不是源码）
+bin/
+
 # 发布用的令牌（GitHub / npm，绝不进仓库）
 .gh-token
 .npm-token
